@@ -1,0 +1,104 @@
+import tkinter as tk
+import random
+
+window = tk.Tk()
+window.title("Catan Resource Analyzer")
+
+
+clicks = 0
+
+def roll_dice():
+    die1 = random.randint(1, 6)
+    die2 = random.randint(1, 6)
+
+    total = die1 + die2
+
+    result_label.config(text=f"{die1} + {die2} = {total}")
+    
+    global clicks
+    clicks += 1
+    
+    clicks_label.config(text="Clicks: " + str(clicks))
+    
+
+
+result_label = tk.Label(window, font=("Calibri", 18))
+result_label.pack()
+
+clicks_label = tk.Label(window, font=("Times New Roman", 12))
+clicks_label.pack(anchor='w')
+
+def create():
+    new_win = tk.Toplevel(window)
+    
+    
+checkResources = tk.Button(window, text="Check My Resources", command=create)
+checkResources.pack()
+
+# Create the main frame for labels and Checkboxes
+frame_a = tk.Frame(window, relief=tk.RAISED, borderwidth=1)
+frame_a.pack()
+hex_num_label = tk.Label(window, text="Hex #")
+hex_num_label.place(x=195, y=60)
+
+# Labels for resources
+wool = tk.Label(frame_a, text="WOOL", fg="deep pink", bg="alice blue")
+grain = tk.Label(frame_a, text="GRAIN", fg="goldenrod", bg="wheat")
+lumber = tk.Label(frame_a, text="LUMBER", fg="brown", bg="chocolate")
+brick = tk.Label(frame_a, text="BRICK", fg="dark red", bg="dark gray")
+ore = tk.Label(frame_a, text="ORE", fg="olive drab", bg="black")
+
+# Use the grid method to position labels
+wool.grid(row=0, column=0, padx=10, pady=5, sticky="w")
+grain.grid(row=1, column=0, padx=10, pady=5, sticky="w")
+lumber.grid(row=2, column=0, padx=10, pady=5, sticky="w")
+brick.grid(row=3, column=0, padx=10, pady=5, sticky="w")
+ore.grid(row=4, column=0, padx=10, pady=5, sticky="w")
+
+
+# Checkbuttons for settlements
+c1_wool = tk.Checkbutton(frame_a, text="Settlement?", onvalue=1, offvalue=0)
+c2_wool = tk.Checkbutton(frame_a, onvalue=1, offvalue=0)
+c1_grain = tk.Checkbutton(frame_a, text="Settlement?", onvalue=1, offvalue=0)
+c2_grain = tk.Checkbutton(frame_a, onvalue=1, offvalue=0)
+c1_lumber = tk.Checkbutton(frame_a, text="Settlement?", onvalue=1, offvalue=0)
+c2_lumber = tk.Checkbutton(frame_a, onvalue=1, offvalue=0)
+c1_brick = tk.Checkbutton(frame_a, text="Settlement?", onvalue=1, offvalue=0)
+c2_brick = tk.Checkbutton(frame_a, onvalue=1, offvalue=0)
+c1_ore = tk.Checkbutton(frame_a, text="Settlement?", onvalue=1, offvalue=0)
+c2_ore = tk.Checkbutton(frame_a, onvalue=1, offvalue=0)
+
+# Use the grid method to position Checkboxes
+c1_wool.grid(row=0, column=1, pady=5, sticky="e")
+c2_wool.grid(row=0, column=2, pady=5, sticky="e")
+c1_grain.grid(row=1, column=1, pady=5, sticky="e")
+c2_grain.grid(row=1, column=2, pady=5, sticky="e")
+c1_lumber.grid(row=2, column=1, pady=5, sticky="e")
+c2_lumber.grid(row=2, column=2, pady=5, sticky="e")
+c1_brick.grid(row=3, column=1, pady=5, sticky="e")
+c2_brick.grid(row=3, column=2, pady=5, sticky="e")
+c1_ore.grid(row=4, column=1, pady=5, sticky="e")
+c2_ore.grid(row=4, column=2, pady=5, sticky="e")
+
+hex1_wool = tk.Entry(frame_a, width=5, borderwidth=2, bg="alice blue", fg="deep pink")
+hex2_wool = tk.Entry(frame_a, width=5, borderwidth=2, bg="wheat", fg="goldenrod")
+hex3_wool = tk.Entry(frame_a, width=5, borderwidth=2, bg="chocolate", fg="brown")
+hex4_wool = tk.Entry(frame_a, width=5, borderwidth=2, bg="dark gray", fg="dark red")
+hex5_wool = tk.Entry(frame_a, width=5, borderwidth=2, bg="black", fg="olive drab")
+
+hex1_wool.grid(row=0, column=3, padx=5, pady=5)
+hex2_wool.grid(row=1, column=3, padx=5, pady=5)
+hex3_wool.grid(row=2, column=3, padx=5, pady=5)
+hex4_wool.grid(row=3, column=3, padx=5, pady=5)
+hex5_wool.grid(row=4, column=3, padx=5, pady=5)
+
+window.title("Dice Roller")
+
+roll_button = tk.Button(window, text="Roll Dice", command=roll_dice)
+roll_button.pack(pady=10)
+
+
+
+
+
+window.mainloop()
